@@ -1,0 +1,17 @@
+doctype 5
+html
+  head
+    title Zelda
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+
+  body(ng-app='zelda')
+    div(ng-view)
+
+  scripts
+    script(src='/js/lib/jquery.min.js')
+    script(src='/js/lib/angular.min.js')
+    script(src='/js/lib/ui-bootstrap-tpls-0.3.0.min.js')
+    script(src='/js/lib/bootstrap.min.js')
+    script(src='/js/main.js')
