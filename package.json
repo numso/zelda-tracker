@@ -9,6 +9,6 @@
     "jade": "*",
     "stylus": "*",
     "request": "~2.21.0",
-    "node-config": "0.0.2"
+    "config": "~0.4.24"
   }
 }
