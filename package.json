@@ -8,6 +8,7 @@
     "express": "3.0.4",
     "jade": "*",
     "stylus": "*",
-    "request": "~2.21.0"
+    "request": "~2.21.0",
+    "node-config": "0.0.2"
   }
 }

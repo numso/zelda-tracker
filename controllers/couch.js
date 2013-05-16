@@ -1,4 +1,5 @@
-var request = require('request');
+var     request = require('request')
+       , config = require('config').couchConfig;
 
 module.exports = function (app) {
   app.get('/games', getGames);
@@ -7,7 +8,7 @@ module.exports = function (app) {
 };
 
 function getGames(req, res, next) {
-  request('http://dallinosmun.iriscouch.com/zelda/4d965941e47fcd11621e7ca145000b00', function (err, resp, body) {
+  request(config.host + ':' + config.port + '/' + config.db + '/4d965941e47fcd11621e7ca145000b00', function (err, resp, body) {
     if (err) return res.send({ success: false, err: err});
     var json = JSON.parse(body);
     res.send({ success: true, data: json.games });
@@ -15,7 +16,7 @@ function getGames(req, res, next) {
 }
 
 function getPlayers(req, res, next) {
-  request('http://dallinosmun.iriscouch.com/zelda/_design/views/_view/players', function (err, resp, body) {
+  request(config.host + ':' + config.port + '/' + config.db + '/_design/views/_view/players', function (err, resp, body) {
     if (err) return res.send({ success: false, err: err });
     var json = JSON.parse(body);
     res.send({ success: true, data: json.rows });
@@ -25,7 +26,7 @@ function getPlayers(req, res, next) {
 function updatePlayer(req, res, next) {
   console.log(JSON.stringify(req.body.player));
   request.put({
-    url: 'http://dallinosmun.iriscouch.com/zelda/' + req.body.id,
+    url: config.host + ':' + config.port + '/' + config.db + '/' + req.body.id,
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(req.body.player)
   }, function (err, resp, body) {

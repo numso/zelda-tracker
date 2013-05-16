@@ -1,12 +1,13 @@
 var    http = require('http')
   ,      fs = require('fs')
   ,    path = require('path')
-  , express = require('express');
+  , express = require('express')
+  ,  config = require('config').server;
 
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || config.port);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -18,7 +19,7 @@ app.configure(function(){
     store: new express.session.MemoryStore({
       reapInterval: 20 * 60 * 1000
     }),
-    secret: "u8970oexkgoek*&EUKk)(*>ok"
+    secret: config.secret
   }));
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
