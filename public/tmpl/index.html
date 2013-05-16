@@ -1,4 +1,4 @@
-<h1>Zelda Stuff!</h1>
+<h1>Zelda Tracker</h1>
 
 <table class='table'>
   <thead>
@@ -7,8 +7,30 @@
   </thead>
   <tbody>
     <tr ng-repeat='game in games'>
-      <td>{{game.name}}</td>
-      <td ng-repeat='player in players' ng-click="openEditBox(game, player)">{{(player.games[game.index] | filter:true).length / player.games[game.index].length * 100 | number:0}}</td>
+      <td class='left-title'>{{game.name}}</td>
+      <td class='prog-data' ng-repeat='player in players' ng-click="openEditBox(game, player)">
+        <progress value="player.games[game.index] | average" class="progress-success progress-striped"></progress>
+        <div class='prog-percent'>{{player.games[game.index] | average | number:0}}%</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class='table totals-table'>
+  <tbody>
+    <tr>
+      <td class='left-title'>Total: (dungeons)</td>
+      <td class='prog-data' ng-repeat='player in players'>
+        <progress value="player.games | dungeonAverage" class="progress-success progress-striped"></progress>
+        <div class='prog-percent'>{{player.games | dungeonAverage | number:0}}%</div>
+      </td>
+    </tr>
+    <tr>
+      <td class='left-title'>Total: (games)</td>
+      <td class='prog-data' ng-repeat='player in players'>
+        <progress value="player.games | gameAverage" class="progress-success progress-striped"></progress>
+        <div class='prog-percent'>{{player.games | gameAverage | number:0}}%</div>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -16,6 +38,6 @@
 <h1>{{dialogTitle}}</h1>
 <span ng-repeat='option in dialogOptions'>
   <label class="checkbox">
-    <input type="checkbox" ng-model="dialogValues[$index]"> {{option}}
+    <input type="checkbox" ng-click="clickedBox()" ng-model="dialogValues[$index]"> {{option}}
   </label>
 </span>

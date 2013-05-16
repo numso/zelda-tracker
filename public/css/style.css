@@ -1,7 +1,24 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
+}
+h1 {
+  text-align: center;
+}
+.left-title {
+  width: 150px;
+}
+.prog-data {
+  position: relative;
+}
+.prog-percent {
+  position: absolute;
+  top: 10px;
+  left: 45%;
+}
+.totals-table {
+  margin-top: 40px;
 }
