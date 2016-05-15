@@ -1,0 +1,50 @@
+<html ng-app="zelda">
+  <head>
+    <title>Zelda Tracker</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-controller="mainCtrl">
+
+    <h3 class="center">Zelda Tracker</h3>
+
+    <table class="table">
+      <tr>
+        <th></th>
+        <th ng-repeat="person in people">{{person}}</th>
+      </tr>
+      <tr ng-repeat="(name, levels) in games">
+        <td>{{name}}</td>
+        <td ng-repeat="person in people">
+          <progressbar value="levels | progress:progress[person][name] | number:0" ng-click="clickProgress(person, name, levels)"></progressbar>
+          <div class="prog-num" ng-click="clickProgress(person, name, levels)">{{levels | progress:progress[person][name] | number:0}}%</div>
+        </td>
+      </tr>
+
+      <tr><td></td><td ng-repeat="person in people"></td></tr>
+      <tr><td></td><td ng-repeat="person in people"></td></tr>
+
+      <tr>
+        <td>Totals: (dungeons)</td>
+        <td ng-repeat="person in people">
+          <progressbar type="success" value="games | progressDungeons:progress[person] | number:0"></progressbar>
+          <div class="prog-num">{{games | progressDungeons:progress[person] | number:0}}%</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Totals: (games)</td>
+        <td ng-repeat="person in people">
+          <progressbar type="success" value="games | progressGames:progress[person] | number:0"></progressbar>
+          <div class="prog-num">{{games | progressGames:progress[person] | number:0}}%</div>
+        </td>
+      </tr>
+    </table>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdn.firebase.com/v0/firebase.js"></script>
+    <script src="//cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
