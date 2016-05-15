@@ -1,0 +1,121 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": {
+      "webpack": { "config": "./webpack.config.js" }
+    },
+    "import/ignore": [
+      ".(styl|istyl|css|icss)$",
+      "node_modules",
+      ".coffee"
+    ],
+    "lodash": {
+      "version": 3
+    }
+  },
+  "plugins": [
+    "import",
+    "filenames",
+    "no-useless-assign",
+    "promise",
+    "lodash"
+  ],
+  "rules": {
+    // ESLINT
+    "complexity": [1, { "max": 10 }],
+    "semi": [2, "never"],
+    "no-param-reassign": [2, { "props": false }],
+    "no-use-before-define": [2, { "functions": false }],
+    "space-before-function-paren": 0,
+    "no-console": [2, { "allow": [ "warn", "error" ] }],
+    "sort-vars": 2,
+    "generator-star-spacing": [2, "after"],
+    "prefer-arrow-callback": [2, { "allowNamedFunctions": true }],
+
+    // REACT
+    "react/prefer-es6-class": 1,
+    "react/sort-comp": [2, { "order": [
+      "static-methods", "state", "props", "lifecycle", "/^on.+$/",
+      "/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/",
+      "everything-else", "/^render.+$/", "render"
+    ] }],
+    "react/sort-prop-types": [2, { "ignoreCase": true }],
+    "react/no-multi-comp": [1, { "ignoreStateless": true }],
+    "jsx-a11y/valid-aria-role": 1,
+
+    // IMPORT
+    "import/no-unresolved": 2,
+    "import/named": 2,
+    "import/default": 2,
+    "import/namespace": 2,
+    "import/export": 2,
+    "import/no-commonjs": 2,
+    "import/no-amd": 2,
+    "import/imports-first": 2,
+
+    // FILENAMES
+    "filenames/filenames": [2, "^[a-z-]+"],
+
+    // NOUSELESSASSIGN
+    "no-useless-assign/no-useless-assign": 2,
+
+    // PROMISE
+    "promise/catch-or-return": 2,
+    "promise/always-return": 2,
+    "promise/param-names": 2,
+
+    // LODASH
+    "lodash/callback-binding": 2,
+    "lodash/collection-method-value": 2,
+    "lodash/collection-return": 2,
+    "lodash/no-double-unwrap": 2,
+    "lodash/no-extra-args": 2,
+    "lodash/unwrap": 2,
+
+    "lodash/prefer-constant": 2,
+    "lodash/prefer-get": 2,
+    "lodash/prefer-includes": 2,
+    "lodash/prefer-is-nil": 2,
+    "lodash/prefer-lodash-chain": 2,
+    "lodash/prefer-lodash-method": [2, { "ignoreObjects": ["ReactChildren"] }],
+    "lodash/prefer-lodash-typecheck": 2,
+    "lodash/prefer-matches": 2,
+    "lodash/prefer-noop": 2,
+    "lodash/prefer-over-quantifier": 2,
+    "lodash/prefer-startswith": 2,
+    "lodash/prefer-times": 2,
+
+    "lodash/chain-style": [2, "explicit"],
+    "lodash/identity-shorthand": 2,
+    "lodash/matches-prop-shorthand": 2,
+    "lodash/matches-shorthand": 2,
+    "lodash/no-commit": 2,
+    "lodash/no-single-chain": 2,
+    "lodash/path-style": 2,
+    "lodash/prefer-chain": [2, 2],
+    "lodash/prefer-compact": 2,
+    "lodash/prefer-filter": 2,
+    "lodash/prefer-flat-map": 2,
+    "lodash/prefer-invoke-map": 2,
+    "lodash/prefer-map": 2,
+    "lodash/prefer-reject": 2,
+    "lodash/prefer-thru": 2,
+    "lodash/prefer-wrapper-method": 2,
+    "lodash/preferred-alias": 2,
+    "lodash/prop-shorthand": 2
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "before": true,
+    "beforeEach": true,
+    "after": true,
+    "afterEach": true
+  },
+  "env": {
+    "mocha": true,
+    "node": true,
+    "browser": true
+  }
+}
