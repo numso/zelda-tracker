@@ -24,7 +24,7 @@ const template = `
 </div>
 `
 
-app.controller('mainCtrl', function ($scope, $firebase, $modal) {
+app.controller('mainCtrl', ['$scope', '$firebase', '$modal', function ($scope, $firebase, $modal) {
     'use strict';
 
     var gamesRef = new Firebase('https://zelda.firebaseio.com/games');
@@ -51,11 +51,10 @@ app.controller('mainCtrl', function ($scope, $firebase, $modal) {
         }
       });
     };
-  }
+  }]
 );
 
-app.controller('modalCtrl',
-  function ($scope, $firebase, $modalInstance, data) {
+app.controller('modalCtrl', ['$scope', '$firebase', '$modalInstance', 'data', function ($scope, $firebase, $modalInstance, data) {
     'use strict';
 
     $scope.game = data.game;
@@ -72,11 +71,10 @@ app.controller('modalCtrl',
     $scope.dismiss = function () {
       $modalInstance.dismiss();
     };
-  }
+  }]
 );
 
-app.filter('progress',
-  function () {
+app.filter('progress', function () {
     'use strict';
 
     return function (levels, progress) {
@@ -92,8 +90,7 @@ app.filter('progress',
   }
 );
 
-app.filter('progressDungeons',
-  function () {
+app.filter('progressDungeons', function () {
     'use strict';
 
     return function (games, progress) {
@@ -116,8 +113,7 @@ app.filter('progressDungeons',
   }
 );
 
-app.filter('progressGames',
-  function () {
+app.filter('progressGames', function () {
     'use strict';
 
     return function (games, progress) {
