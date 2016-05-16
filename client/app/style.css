@@ -1,0 +1,13 @@
+html,
+body {
+  height: 100%;
+}
+
+:global #app {
+  height: 100%;
+}
+
+.spacer {
+  background-color: grey;
+  height: 30px;
+}

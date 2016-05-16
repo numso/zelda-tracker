@@ -1,42 +1,43 @@
 /* eslint import/no-commonjs: 0 */
 
-var webpack = require('webpack')
+const autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
 
 module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.DedupePlugin(),
   ],
 
   entry: './client/app/index.js',
 
   output: {
-    path: __dirname + '/dist/build/',
-    filename: 'bundle.js'
+    path: `${__dirname}/dist/build/`,
+    filename: 'bundle.js',
   },
 
   resolve: {
-    extensions: ['', '.js', '.css']
+    extensions: ['', '.js', '.css'],
   },
 
   module: {
     preLoaders: [
-      {test: /\.json$/, loader: 'json'}
+      { test: /\.json$/, loader: 'json' },
     ],
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015', 'stage-1']
+          presets: ['react', 'es2015', 'stage-1'],
         },
-        exclude: [/node_modules/]
+        exclude: [/node_modules/],
       },
       {
         test: /\.css$/,
@@ -46,17 +47,20 @@ module.exports = {
             '?modules' +
             '&importLoaders=1' +
             '&localIdentName=[hash:base64:5]',
-          'postcss'
+          'postcss',
         ],
-        exclude: [/node_modules/]
-      }
-    ]
+        exclude: [/node_modules/],
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'postcss'],
+        include: [/node_modules/],
+      },
+    ],
   },
 
-  postcss: [
-    require('autoprefixer')
-  ],
+  postcss: [autoprefixer],
 
-  devtool: 'source-map'
+  devtool: 'source-map',
 
 }

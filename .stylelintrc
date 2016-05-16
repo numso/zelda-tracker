@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-suitcss",
+  "ignoreFiles": [
+    "**/*.min.css",
+    "coverage/**"
+  ]
+}

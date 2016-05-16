@@ -1,0 +1,9 @@
+.wrapper {
+  position: relative;
+}
+
+.text {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

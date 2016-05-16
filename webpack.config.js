@@ -1,29 +1,30 @@
 /* eslint import/no-commonjs: 0 */
 
-var webpack = require('webpack')
+const autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
 
 module.exports = {
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   ],
 
   entry: './client/app/index.js',
 
   output: {
-    path: __dirname + '/client/build/',
+    path: `${__dirname}/client/build/`,
     filename: 'bundle.js',
-    publicPath: '/build/'
+    publicPath: '/build/',
   },
 
   resolve: {
-    extensions: ['', '.js', '.css']
+    extensions: ['', '.js', '.css'],
   },
 
   module: {
     preLoaders: [
-      {test: /\.json$/, loader: 'json'}
+      { test: /\.json$/, loader: 'json' },
     ],
     loaders: [
       {
@@ -37,17 +38,17 @@ module.exports = {
                 {
                   transform: 'react-transform-hmr',
                   imports: ['react'],
-                  locals: ['module']
+                  locals: ['module'],
                 },
                 {
                   transform: 'react-transform-catch-errors',
-                  imports: ['react', 'redbox-react']
-                }
-              ]
-            }]
-          ]
+                  imports: ['react', 'redbox-react'],
+                },
+              ],
+            }],
+          ],
         },
-        exclude: [/node_modules/]
+        exclude: [/node_modules/],
       },
       {
         test: /\.css$/,
@@ -57,22 +58,25 @@ module.exports = {
             '?modules' +
             '&importLoaders=1' +
             '&localIdentName=[name]__[local]__[hash:base64:5]',
-          'postcss'
+          'postcss',
         ],
-        exclude: [/node_modules/]
-      }
-    ]
+        exclude: [/node_modules/],
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'postcss'],
+        include: [/node_modules/],
+      },
+    ],
   },
 
-  postcss: [
-    require('autoprefixer')
-  ],
+  postcss: [autoprefixer],
 
   devServer: {
     contentBase: 'client/',
-    publicPath: '/build/'
+    publicPath: '/build/',
   },
 
-  devtool: '#eval'
+  devtool: '#eval',
 
 }
